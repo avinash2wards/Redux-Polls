@@ -5,14 +5,12 @@ import { handleInitialData } from "../actions/shared";
 
 class App extends Component {
   componentDidMount() {
-    handleInitialData();
+    this.props.dispatch(handleInitialData());
   }
 
   render() {
-    return <div>{JSON.stringify(this.props)}</div>;
+    return <div>{JSON.stringify(this.props.polls)}</div>;
   }
 }
 
-export default connect(state => {
-  return { polls: state.polls };
-})(App);
+export default connect(state => ({ polls: state.users }))(App);
