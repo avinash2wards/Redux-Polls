@@ -1,4 +1,4 @@
-import { RECEIVE_POLLS } from "../actions/polls";
+import { RECEIVE_POLLS, ADD_POLL } from "../actions/polls";
 
 export function polls(state = {}, action) {
   switch (action.type) {
@@ -6,6 +6,12 @@ export function polls(state = {}, action) {
       return {
         ...state,
         ...action.polls
+      };
+
+    case ADD_POLL:
+      return {
+        ...state,
+        [action.poll.id]: action.poll
       };
 
     default:
