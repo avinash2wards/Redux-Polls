@@ -3,14 +3,29 @@ import { connect } from "react-redux";
 
 import { handleInitialData } from "../actions/shared";
 
+import Dashboard from "./Dashboard";
+import Leaderboard from "./LeaderBorad";
+import LoadingBar from "react-redux-loading";
+
 class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData());
   }
 
   render() {
-    return <div>{JSON.stringify(this.props.polls)}</div>;
+    return (
+      <div>
+        <LoadingBar />
+        {this.props.loading === true ? null : <Leaderboard />}
+      </div>
+    );
   }
 }
 
-export default connect(state => ({ polls: state.users }))(App);
+function mapStateToProps(state) {
+  return {
+    loading: state.authedUser === null
+  };
+}
+
+export default connect(mapStateToProps)(App);
