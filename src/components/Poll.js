@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { getPercentage } from "../utils/helpers";
+import { handleAddAnswer } from "../actions/answers";
 
 const getVoteKeys = () => ["aVotes", "bVotes", "cVotes", "dVotes"];
 
